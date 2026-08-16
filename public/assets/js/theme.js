@@ -308,12 +308,12 @@
     }, 20);
     //Update link on change or input
     $(document).on('change input', '.donation_wrapper > .amount_wrapper > input', function() {
-        $(this).val(parseFloat($(this).val()).toFixed(2));
-        $(this).parent().parent().find('> a').attr('href', donate_link.replace('{amount}', parseFloat($(this).val()).toFixed(2)));
+        $(this).val(Math.round(parseFloat($(this).val())));
+        $(this).parent().parent().find('> a').attr('href', donate_link.replace('{amount}', Math.round(parseFloat($(this).val()))));
     });
     //Change amount on button click
     $(document).on('click', '.donation_wrapper > .single_amount_wrapper > .single_amount', function() {
-        $('.donation_wrapper > .amount_wrapper > input').val(parseFloat($(this).attr('value')).toFixed(2)).trigger('change');
+        $('.donation_wrapper > .amount_wrapper > input').val(Math.round(parseFloat($(this).attr('value')))).trigger('change');
     });
 
 
