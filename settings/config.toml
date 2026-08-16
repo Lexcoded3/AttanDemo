@@ -1,0 +1,30 @@
+[general]
+
+#### Address & Root dir
+host = "::"
+port = 8080
+root = "/public"
+
+#### Logging
+log-level = "error"
+
+#### Cache Control headers
+cache-control-headers = true
+
+#### Auto Compression
+compression = true
+
+#### Error pages
+# Note: If a relative path is used then it will be resolved under the root directory.
+page404 = "./404.html"
+
+#### Directory listing
+directory-listing = false
+
+#### Redirect to trailing slash in the requested directory uri
+redirect-trailing-slash = true
+
+#### List of index files
+index-files = "index.html"
+
+[advanced]

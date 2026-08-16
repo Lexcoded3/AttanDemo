@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 4102.1505376344085 1400" fill="none">
+  <g transform="translate(10,1050) scale(1,-1)" fill="url(#fadeDown)">
+    <!-- A -->
+    <path d="M499 124H237L195 0H16L270 702H468L722 0H541ZM455 256 368 513 282 256Z" transform="translate(0,0)"/>
+    <!-- T -->
+    <path d="M12 702H622V562H392V0H242V562H12Z" transform="translate(802,0)"/>
+    <!-- T -->
+    <path d="M12 702H622V562H392V0H242V562H12Z" transform="translate(1500,0)"/>
+    <!-- A -->
+    <path d="M499 124H237L195 0H16L270 702H468L722 0H541ZM455 256 368 513 282 256Z" transform="translate(2198,0)"/>
+    <!-- N -->
+    <path d="M690 0H519L233 433V0H62V702H233L519 267V702H690Z" transform="translate(3000,0)"/>
+  </g>
+  <defs>
+    <linearGradient id="fadeDown" x1="2051" y1="720" x2="2051" y2="-20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

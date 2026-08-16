@@ -1,0 +1,715 @@
+/* ==========================================================================
+   AT T A N   -   W O W   U P G R A D E
+   Cinematic hero, floating WhatsApp/call actions, animations & polish
+   ========================================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* --------------------------------------------------------------------------
+   1. FLOATING ACTIONS  (WhatsApp + Call, shown on every page)
+   -------------------------------------------------------------------------- */
+.attan-float-actions {
+    position: fixed;
+    right: 22px;
+    top: 54%;
+    transform: translateY(-50%); /* just below vertical center on the right edge */
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+}
+
+.attan-float-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.attan-float-btn:hover,
+.attan-float-btn:focus {
+    color: #fff;
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
+}
+
+/* WhatsApp button — green with a pulsing "live" ring */
+.attan-float-whatsapp {
+    background: #25d366;
+}
+
+.attan-float-whatsapp::before,
+.attan-float-whatsapp::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.65);
+    animation: attan-pulse 2.4s ease-out infinite;
+}
+
+.attan-float-whatsapp::after {
+    animation-delay: 1.2s;
+}
+
+@keyframes attan-pulse {
+    0%   { transform: scale(1); opacity: 0.9; }
+    70%  { transform: scale(1.65); opacity: 0; }
+    100% { transform: scale(1.65); opacity: 0; }
+}
+
+/* Call button */
+.attan-float-call {
+    background: #0077c8;
+}
+
+/* Hover labels (slide out on desktop) */
+.attan-float-label {
+    position: absolute;
+    right: calc(100% + 14px);
+    top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    background: #0b1f4b;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.attan-float-label::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: #0b1f4b;
+}
+
+.attan-float-btn:hover .attan-float-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* --------------------------------------------------------------------------
+   2. CINEMATIC HERO
+   -------------------------------------------------------------------------- */
+
+/* Ken Burns slow zoom on the hero background image */
+.attan-hero-bg {
+    background-position: center center !important;
+    animation: attan-kenburns 26s ease-in-out infinite alternate;
+    will-change: background-size, background-position;
+}
+
+@keyframes attan-kenburns {
+    0%   { background-size: 108%; background-position: 30% 30%; }
+    100% { background-size: 124%; background-position: 70% 70%; }
+}
+
+/* Navy cinematic overlay (darker on the left for text contrast) */
+.attan-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        95deg,
+        rgba(6, 22, 68, 0.94) 0%,
+        rgba(6, 22, 68, 0.82) 42%,
+        rgba(6, 22, 68, 0.45) 75%,
+        rgba(6, 22, 68, 0.28) 100%
+    );
+    pointer-events: none;
+}
+
+.hero-active.attan-hero-bg { position: relative; }
+
+.attan-hero-row {
+    position: relative;
+    z-index: 2;
+}
+
+/* Eyebrow pill */
+.attan-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+    padding: 9px 20px;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 26px;
+}
+
+.attan-hero-eyebrow img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Headline */
+.attan-hero-title {
+    color: #fff !important;
+    font-size: 62px !important;
+    line-height: 1.12 !important;
+    text-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+}
+
+.attan-hero-title .attan-accent {
+    background: linear-gradient(120deg, #4db8ff 0%, #0077c8 55%, #4db8ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* Hero description */
+.attan-hero-desc p {
+    color: rgba(255, 255, 255, 0.92) !important;
+    font-size: 17px !important;
+    line-height: 1.75 !important;
+    max-width: 560px;
+}
+
+/* Hero CTA row */
+.attan-hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.attan-hero-actions .politics-btn a {
+    background: #0077c8;
+    color: #fff;
+}
+
+.attan-hero-actions .politics-btn a:hover {
+    background: #012549;
+    color: #fff;
+}
+
+.attan-hero-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-weight: 600;
+    padding: 14px 24px;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+
+.attan-hero-wa i {
+    color: #25d366;
+    font-size: 20px;
+}
+
+.attan-hero-wa:hover {
+    background: #25d366;
+    border-color: #25d366;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(37, 211, 102, 0.35);
+}
+
+/* Count-up stat chips */
+.attan-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 40px;
+}
+
+.attan-stat {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 14px 22px;
+    min-width: 120px;
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.attan-stat:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(77, 184, 255, 0.6);
+}
+
+.attan-stat .attan-stat-num {
+    display: block;
+    font-size: 32px;
+    font-weight: 800;
+    color: #4db8ff;
+    line-height: 1.1;
+}
+
+.attan-stat .attan-stat-suffix {
+    color: #4db8ff;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.attan-stat p {
+    margin: 6px 0 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 12.5px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+/* Decorative squares on about-left image */
+.politics-about-left {
+    position: relative;
+}
+.politics-about-left::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 48px;
+    height: 48px;
+    background: #0077c8;
+    border-radius: 6px;
+    z-index: 2;
+    opacity: 0.85;
+}
+.politics-about-left::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: -16px;
+    width: 94px;
+    height: 48px;
+    background: #0077c8;
+    border-radius: 6px;
+    z-index: 2;
+    opacity: 1;
+}
+
+/* Portrait-ready frame (right column) */
+.attan-hero-portrait {
+    position: absolute;
+    bottom: -120px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 5;
+}
+
+.attan-portrait-frame {
+    position: relative;
+    width: 660px;
+    max-width: 100%;
+}
+
+@keyframes attan-float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-14px); }
+}
+
+.attan-portrait-inner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Real photo (drop-in ready) */
+.attan-portrait-inner img.attan-portrait-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* Elegant placeholder until a real portrait is added */
+.attan-portrait-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.attan-portrait-placeholder img {
+    width: 120px;
+    height: 120px;
+    opacity: 0.92;
+    filter: drop-shadow(0 8px 20px rgba(77, 184, 255, 0.35));
+    animation: attan-breathe 4s ease-in-out infinite;
+}
+
+@keyframes attan-breathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.07); }
+}
+
+.attan-portrait-placeholder span {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.attan-portrait-placeholder small {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+
+
+/* Name badge under the portrait */
+.attan-portrait-badge {
+    position: absolute;
+    left: 3px;
+    bottom: 6px;
+    transform: none;
+    background: #0b1f4b;
+    border: 1px solid rgba(77, 184, 255, 0.5);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 30px;
+    white-space: nowrap;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.attan-portrait-badge i {
+    color: #4db8ff;
+    margin-right: 6px;
+}
+
+/* Staggered entrance for hero text */
+.attan-anim {
+    animation: attan-fadeUp 0.9s cubic-bezier(0.22, 0.68, 0.35, 1) both;
+}
+
+@keyframes attan-fadeUp {
+    from { opacity: 0; transform: translateY(34px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   3. MICRO-INTERACTIONS  (hover polish across sections)
+   -------------------------------------------------------------------------- */
+
+/* Feature / mission / blog card lifts */
+.politics-feature-box,
+.mission-item-box,
+.blog-item-box,
+.team-item-box {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.politics-feature-box:hover,
+.mission-item-box:hover,
+.blog-item-box:hover,
+.team-item-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 22px 44px rgba(6, 28, 84, 0.16);
+}
+
+/* Blog & mission image zoom on hover */
+.blog-img-thum,
+.mission-img-thum,
+.team-img-thum {
+    overflow: hidden;
+}
+
+.blog-img-thum img,
+.mission-img-thum img,
+.team-img-thum img {
+    transition: transform 0.6s ease;
+}
+
+.blog-item-box:hover .blog-img-thum img,
+.mission-item-box:hover .mission-img-thum img,
+.team-item-box:hover .team-img-thum img {
+    transform: scale(1.09);
+}
+
+/* Primary buttons (hero only): subtle shine sweep */
+.attan-hero-actions .politics-btn a {
+    position: relative;
+    overflow: hidden;
+}
+
+.attan-hero-actions .politics-btn a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.55s ease;
+}
+
+.attan-hero-actions .politics-btn a:hover::after {
+    left: 125%;
+}
+
+/* Section headings get a soft underline reveal */
+.politics-section-title h2 {
+    position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   4. RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1199px) {
+    .attan-hero-title { font-size: 50px !important; }
+    .attan-portrait-frame { width: 530px; }
+}
+
+@media (max-width: 991px) {
+    .hero-active.attan-hero-bg { padding: 90px 0; }
+    .attan-hero-overlay {
+        background: linear-gradient(180deg, rgba(6, 22, 68, 0.92) 0%, rgba(6, 22, 68, 0.78) 100%);
+    }
+    .attan-hero-title { font-size: 40px !important; }
+    .attan-hero-portrait { position: relative; bottom: auto; right: auto; left: auto; margin-top: auto; justify-content: center; display: flex; align-items: flex-end; }
+    .attan-portrait-frame { margin-bottom: -120px; width: 400px; }
+    .attan-portrait-badge { left: 50%; transform: translateX(-50%); }
+    .attan-hero-desc p { max-width: 100%; }
+}
+
+@media (max-width: 767px) {
+    .attan-hero-portrait { margin-top: -185px; justify-content: flex-end; }
+    .attan-float-actions { right: 14px; gap: 12px; }
+    .attan-float-btn { width: 42px; height: 42px; font-size: 18px; }
+    .attan-float-label { display: none; }
+    .attan-hero-title { font-size: 32px !important; }
+    .attan-portrait-frame { width: 310px; margin-bottom: -110px; }
+    .attan-stat { min-width: 100px; padding: 12px 14px; }
+    .attan-stat .attan-stat-num { font-size: 26px; }
+}
+
+/* --------------------------------------------------------------------------
+   10. MOBILE BOTTOM NAVIGATION  (fixed tab bar on small screens)
+   -------------------------------------------------------------------------- */
+.attan-mobile-nav {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    /* give page content room above the fixed bar (+ iOS safe-area inset) */
+    body {
+        padding-bottom: calc(64px + env(safe-area-inset-bottom, 0));
+    }
+
+    .attan-mobile-nav {
+        display: flex;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10050;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(0, 119, 200, 0.18);
+        box-shadow: 0 -6px 20px rgba(1, 37, 73, 0.14);
+        padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+
+    .attan-mobile-nav-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        padding: 9px 2px 8px;
+        color: #5b6472;
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        text-decoration: none;
+        position: relative;
+        transition: color 0.2s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .attan-mobile-nav-item i {
+        font-size: 23px;
+        line-height: 1;
+        transition: transform 0.2s ease;
+    }
+
+    .attan-mobile-nav-item:active i {
+        transform: scale(0.88);
+    }
+
+    .attan-mobile-nav-item.active {
+        color: #0077c8;
+    }
+
+    .attan-mobile-nav-item.active::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 34px;
+        height: 3px;
+        border-radius: 0 0 4px 4px;
+        background: #0077c8;
+    }
+
+    /* keep the back-to-top button clear of the bar */
+    .prgoress_indicator {
+        bottom: 74px;
+    }
+}
+
+/* ---------- top-bar account pill (public header) ---------- */
+.header-top-account {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+}
+.header-top-account a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .12);
+    border: 1.5px solid rgba(255, 255, 255, .28);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .18);
+    transition: all .28s ease;
+    text-decoration: none;
+}
+/* Avatar disc behind the user icon (ti-user line glyph, same as the mobile tab) */
+.header-top-account a > i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 17px;
+    color: #fff;
+    background: linear-gradient(135deg, #2b9ce0 0%, #0077c8 100%);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .35);
+    transition: all .28s ease;
+}
+.header-top-account a:hover {
+    background: #0077c8;
+    border-color: #0077c8;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 119, 200, .42);
+}
+.header-top-account a:hover > i {
+    background: linear-gradient(135deg, #4db8ff 0%, #0b4f8f 100%);
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .55);
+}
+@media (max-width: 991px) {
+    .header-top-account { display: none; }
+}
+
+/* ---------- mobile menu account button (shows in the meanmenu bar ≤991px) ---------- */
+.mobile-account-btn {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .mobile-menu-area {
+        position: relative;
+    }
+    .mobile-account-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 64px;
+        top: 13px;
+        z-index: 2;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .14);
+        border: 1.5px solid rgba(255, 255, 255, .32);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+        text-decoration: none;
+        transition: all .28s ease;
+    }
+    .mobile-account-btn > i {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-size: 17px;
+        color: #fff;
+        background: linear-gradient(135deg, #2b9ce0 0%, #0077c8 100%);
+        box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .35);
+        transition: all .28s ease;
+    }
+    .mobile-account-btn:hover {
+        background: #0077c8;
+        border-color: #0077c8;
+        box-shadow: 0 6px 16px rgba(0, 119, 200, .45);
+    }
+    .mobile-account-btn:hover > i {
+        background: linear-gradient(135deg, #4db8ff 0%, #0b4f8f 100%);
+    }
+    /* slightly smaller on tiny phones */
+    @media (max-width: 479px) {
+        .mobile-account-btn {
+            right: 58px;
+            top: 14px;
+            width: 36px;
+            height: 36px;
+        }
+        .mobile-account-btn > i {
+            width: 28px;
+            height: 28px;
+        }
+    }
+}

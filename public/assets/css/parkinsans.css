@@ -1,0 +1,70 @@
+/* ============================================================
+   Parkinsans — local @font-face (bundled in assets/fonts/parkinsans)
+   ============================================================ */
+@font-face {
+    font-family: 'Parkinsans';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("../fonts/parkinsans/Parkinsans-Light.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Parkinsans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/parkinsans/Parkinsans-Regular.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Parkinsans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../fonts/parkinsans/Parkinsans-Medium.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Parkinsans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../fonts/parkinsans/Parkinsans-SemiBold.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Parkinsans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../fonts/parkinsans/Parkinsans-Bold.woff2") format('woff2');
+}
+@font-face {
+    font-family: 'Parkinsans';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("../fonts/parkinsans/Parkinsans-ExtraBold.woff2") format('woff2');
+}
+
+/* ============================================================
+   Global application — Parkinsans everywhere, with fallbacks
+   ============================================================ */
+body,
+p,
+a,
+li,
+input,
+textarea,
+select,
+button,
+.btn,
+blockquote {
+    font-family: 'Parkinsans', 'Arimo', 'Work Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+.section-title,
+.section-title span,
+.heading-title,
+.title {
+    font-family: 'Parkinsans', 'Work Sans', 'Arimo', sans-serif;
+}
