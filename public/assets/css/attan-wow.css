@@ -863,3 +863,34 @@ html {
     border-radius: 6px;
     display: block;
 }
+
+/* ============================================================
+   Campaign cards — keep the larger pixelforge photos responsive
+   ============================================================ */
+.campaigns-item-thum img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================================================
+   Recent Projects widget (campaigns-details sidebar)
+   Constrain the 768px campaign photos to small thumbs.
+   ============================================================ */
+.widget-recent-post .rpost-thumb img {
+    width: 90px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+/* ============================================================
+   Project Team cards (campaigns-details) — crop real photos
+   ============================================================ */
+.campaing-thumb img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
