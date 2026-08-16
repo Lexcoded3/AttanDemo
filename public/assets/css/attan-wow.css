@@ -713,3 +713,153 @@ html {
         }
     }
 }
+
+/* ============================================================
+   Featured story banner (blog.php)
+   ============================================================ */
+.featured-post-box {
+    display: flex;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 60, 120, 0.10);
+    margin-bottom: 45px;
+}
+
+.featured-post-media {
+    position: relative;
+    flex: 0 0 55%;
+    min-height: 320px;
+    overflow: hidden;
+}
+
+.featured-post-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.featured-post-box:hover .featured-post-media img {
+    transform: scale(1.06);
+}
+
+.featured-post-badge {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    background: #d32f2f;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 30px;
+    box-shadow: 0 4px 14px rgba(211, 47, 47, 0.35);
+}
+
+.featured-post-content {
+    flex: 1;
+    padding: 40px 42px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.featured-post-cat {
+    color: #0077c8;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.featured-post-content h3 {
+    font-size: 28px;
+    line-height: 1.3;
+    margin-bottom: 14px;
+}
+
+.featured-post-content h3 a {
+    color: #0f1f3a;
+}
+
+.featured-post-content h3 a:hover {
+    color: #0077c8;
+}
+
+.featured-post-content p {
+    color: #5a6478;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.featured-post-meta {
+    display: flex;
+    gap: 22px;
+    font-size: 13px;
+    color: #7b8498;
+    margin-bottom: 24px;
+}
+
+.featured-post-meta span i {
+    color: #0077c8;
+    margin-right: 6px;
+}
+
+.featured-post-btn .flaticon {
+    transition: transform 0.3s ease;
+}
+
+.featured-post-btn:hover .flaticon {
+    transform: translateX(5px);
+}
+
+@media (max-width: 991px) {
+    .featured-post-box {
+        flex-direction: column;
+    }
+
+    .featured-post-media {
+        flex: none;
+        min-height: 240px;
+    }
+
+    .featured-post-content {
+        padding: 30px 26px;
+    }
+
+    .featured-post-content h3 {
+        font-size: 22px;
+    }
+}
+
+/* ============================================================
+   Recent posts thumbnails (blog-details sidebar)
+   Constrain the uploaded photos — they were rendering at full
+   natural size (768x512) with no size rule.
+   ============================================================ */
+.recent-widget-thumb img {
+    width: 100px;
+    height: 82px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+/* ============================================================
+   Sidebar Gallery widget (blog-details)
+   Real photos replaced the insta-* placeholders — constrain
+   them to a tidy square grid (they can be 1600px wide).
+   ============================================================ */
+.widget-gallery-thumb img {
+    width: 95px;
+    height: 95px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
